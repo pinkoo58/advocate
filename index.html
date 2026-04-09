@@ -13,20 +13,20 @@
         body { font-family: 'Inter', sans-serif; overflow-x: hidden; background: #FDFBF7; margin: 0; color: #1e293b; }
         .serif { font-family: 'Playfair Display', serif; }
 
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
         
-        /* Staggered entry for cards */
         .stagger-1 { transition-delay: 0.1s; }
         .stagger-2 { transition-delay: 0.2s; }
         .stagger-3 { transition-delay: 0.3s; }
 
-        .card-shadow { 
+        .premium-card { 
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
             border: 1px solid #e2e8f0; 
             background: #fff; 
+            border-radius: 1.5rem;
         }
-        .card-shadow:hover { 
+        .premium-card:hover { 
             transform: translateY(-8px); 
             border-color: #d97706; 
             box-shadow: 0 20px 40px -10px rgba(217, 119, 6, 0.15); 
@@ -34,27 +34,27 @@
 
         #home { 
             position: relative;
-            min-height: 100vh;
+            min-height: 95vh; /* Increased for better button breathing room */
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.95)), 
+            background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)), 
                               url('https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=1920');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
         }
 
-        .section-padding { padding-top: 5rem; padding-bottom: 5rem; }
-        .btn-premium { transition: all 0.3s ease; }
-        .btn-premium:hover { transform: scale(1.03); filter: brightness(1.1); }
+        .section-padding { padding-top: 4rem; padding-bottom: 4rem; }
+        .btn-standard { transition: all 0.3s ease; border-radius: 1rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+        .btn-standard:hover { transform: scale(1.02); filter: brightness(1.1); }
         .glass-header { background: rgba(255, 255, 255, 0.98); backdrop-filter: blur(12px); z-index: 100; }
+        .seal-badge { border: 2px solid #d97706; outline: 1px solid #d97706; outline-offset: 3px; }
+        .label-standard { font-weight: 800; text-transform: uppercase; letter-spacing: 0.3em; font-size: 0.7rem; color: #d97706; }
 
-        .seal-badge {
-            border: 2px solid #d97706;
-            outline: 1px solid #d97706;
-            outline-offset: 3px;
-        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .faq-item.active .faq-answer { max-height: 200px; }
+        .faq-item.active .faq-icon { transform: rotate(180deg); }
     </style>
 </head>
 <body>
@@ -74,6 +74,7 @@
             <div class="hidden md:flex space-x-8 font-bold text-[10px] uppercase tracking-[0.2em] text-slate-500">
                 <a href="#home" class="hover:text-amber-600 transition">Home</a>
                 <a href="#about" class="hover:text-amber-600 transition">The Advocate</a>
+                <a href="#news" class="hover:text-amber-600 transition">Legal News</a>
                 <a href="#practice" class="hover:text-amber-600 transition">Expertise</a>
                 <a href="#contact" class="hover:text-amber-600 transition">Contact</a>
             </div>
@@ -81,65 +82,82 @@
         </div>
     </nav>
 
-    <header id="home" class="text-center pt-32 pb-24">
-        <div class="relative z-10 max-w-5xl mx-auto px-6 reveal active">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-amber-600/10 text-amber-500 font-extrabold text-[10px] uppercase tracking-[0.4em] border border-amber-500/20 mb-8">
-                President • Bar Association Ranikhet
-            </span>
-            <h1 class="serif text-5xl md:text-8xl text-white mb-8 leading-[1.1] tracking-tight">Justice in the Heart of the Himalayas</h1>
-            <p class="text-lg md:text-xl text-slate-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Strategic legal counsel specializing in <b>Civil, Criminal, and Revenue cases</b>. Trusted Panel Advocate for the <b>State Bank of India.</b>
-            </p>
-            
-            <div class="flex flex-wrap gap-5 justify-center">
-                <a href="https://wa.me/919412985739" target="_blank" class="bg-[#25D366] text-white px-10 py-5 rounded-2xl font-bold btn-premium flex items-center justify-center shadow-2xl shadow-green-900/30 min-w-[240px]">
-                    <i class="fa-brands fa-whatsapp text-2xl mr-3"></i> WhatsApp Office
-                </a>
-                <a href="#contact" class="bg-white text-slate-900 px-10 py-5 rounded-2xl font-bold btn-premium flex items-center justify-center shadow-2xl shadow-black/20 min-w-[240px]">
-                    Schedule Consultation
-                </a>
-            </div>
+   <header id="home" class="text-center pt-24 pb-8"> 
+    <div class="relative z-10 max-w-5xl mx-auto px-6 reveal active pb-6"> 
+        <span class="label-standard text-amber-500 mb-6 block">President • Bar Association Ranikhet</span>
+        <h1 class="serif text-5xl md:text-8xl text-white mb-8 leading-[1.1] tracking-tight">Justice in the Heart of the Himalayas</h1>
+        <p class="text-lg md:text-xl text-slate-300 mb-10 max-w-3xl mx-auto leading-relaxed">
+            Strategic legal counsel specializing in <b>Civil, Criminal, and Revenue litigation</b>. Trusted Panel Advocate for the <b><u>State Bank of India.</u></b>
+        </p>
+        <div class="flex flex-wrap gap-5 justify-center">
+            <a href="https://wa.me/919412985739" target="_blank" class="bg-[#25D366] text-white px-5 py-5 btn-standard flex items-center shadow-xl min-w-[240px]">
+                <i class="fa-brands fa-whatsapp text-2xl mr-3"></i> WhatsApp Office
+            </a>
+            <a href="#contact" class="bg-white text-slate-900 px-5 py-5 btn-standard flex items-center shadow-xl min-w-[240px]">
+                Schedule Meeting
+            </a>
         </div>
-    </header>
+    </div>
+</header>
 
     <main>
-        <section class="bg-white border-b border-slate-100">
-            <div class="max-w-6xl mx-auto px-6 py-12">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div><p class="text-3xl font-black text-amber-600 serif">30+</p><p class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Years Exp.</p></div>
-                    <div><p class="text-3xl font-black text-amber-600 serif">President</p><p class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Bar Association</p></div>
-                    <div><p class="text-3xl font-black text-amber-600 serif">SBI</p><p class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Panel Advocate</p></div>
-                    <div><p class="text-3xl font-black text-amber-600 serif">1k+</p><p class="text-[10px] uppercase font-bold tracking-widest text-slate-400">Cases Resolved</p></div>
-                </div>
+        <section class="bg-white border-b border-slate-100 py-10">
+            <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><p class="text-3xl font-black text-amber-600 serif">20+</p><p class="label-standard mt-2 text-slate-400">Years Exp.</p></div>
+                <div><p class="text-3xl font-black text-amber-600 serif">Elected</p><p class="label-standard mt-2 text-slate-400">President</p></div>
+                <div><p class="text-3xl font-black text-amber-600 serif">SBI</p><p class="label-standard mt-2 text-slate-400">Panelist</p></div>
+                <div><p class="text-3xl font-black text-amber-600 serif">500+</p><p class="label-standard mt-2 text-slate-400">Cases Won</p></div>
             </div>
         </section>
 
         <section id="about" class="section-padding reveal">
-            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
                 <div class="relative group">
-                    <img src="https://img.imgdd.com/2a9d7267-5e4d-4aa3-a7ad-cb7b306e3ca1.jpg" class="rounded-2xl shadow-2xl w-full object-cover aspect-[4/5]">
-                    <div class="absolute -bottom-6 -right-6 bg-slate-900 text-white p-8 rounded-full w-48 h-48 flex flex-col items-center justify-center seal-badge hidden lg:flex">
-                        <p class="text-xs font-bold uppercase tracking-widest text-amber-500 mb-1">Elected</p>
-                        <p class="text-2xl font-black italic serif">PRESIDENT</p>
-                        <p class="text-[8px] uppercase font-bold text-center mt-2 px-4">Bar Association Ranikhet</p>
+                    <img src="https://img.imgdd.com/2a9d7267-5e4d-4aa3-a7ad-cb7b306e3ca1.jpg" class="rounded-3xl shadow-2xl w-full object-cover aspect-[4/5]">
+                    <div class="absolute -bottom-6 -right-6 bg-slate-900 text-white p-8 rounded-full w-44 h-44 flex flex-col items-center justify-center seal-badge hidden lg:flex shadow-2xl">
+                        <p class="text-[9px] font-black uppercase tracking-widest text-amber-500 mb-1">Elected</p>
+                        <p class="text-xl font-black italic serif">PRESIDENT</p>
+                        <p class="text-[7px] uppercase font-bold text-center mt-2 px-2">Bar Association Ranikhet</p>
                     </div>
                 </div>
                 <div>
-                    <h3 class="serif text-4xl md:text-5xl mb-6">Advocate Vijay Pandey</h3>
-                    <p class="text-slate-700 leading-relaxed text-lg mb-8 italic">
-                        "Dedicated to upholding the rule of law and providing accessible justice across the Kumaon region."
-                    </p>
-                    <p class="text-slate-600 leading-relaxed mb-8">
-                        A distinguished legal expert specializing in <strong>Civil, Criminal, and Revenue litigation</strong>. Serving as the President of the Bar Association Ranikhet and Panel Advocate for SBI, he offers unparalleled regional expertise.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="p-6 bg-white shadow-sm rounded-xl border-t-4 border-amber-600">
-                            <p class="font-bold text-slate-800 uppercase text-[11px] mb-1">Court Chamber</p>
-                            <p class="text-xs text-slate-500">Chamber No. 7, Ranikhet Court</p>
+                    <span class="label-standard">The Advocate</span>
+                    <h2 class="serif text-4xl md:text-5xl mt-4 mb-6 leading-tight">Advocate Vijay Pandey</h2>
+                    <p class="text-slate-700 leading-relaxed text-lg mb-6 italic">"Dedicated to upholding the rule of law across the Kumaon region."</p>
+                    <p class="text-slate-600 leading-relaxed mb-8">A distinguished legal expert serving as the President of the Bar Association Ranikhet. Decades of regional leadership and strategic depth in High Court and District litigation.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-5 bg-white shadow-sm border-l-4 border-amber-600 rounded-lg">
+                            <p class="label-standard text-[9px]">Official Chamber</p>
+                            <p class="text-xs text-slate-500 mt-1">Chamber No. 7, Ranikhet Court</p>
                         </div>
-                        <div class="p-6 bg-white shadow-sm rounded-xl border-t-4 border-amber-600">
-                            <p class="font-bold text-slate-800 uppercase text-[11px] mb-1">Headquarters</p>
-                            <p class="text-xs text-slate-500">Ranikhet, Almora & Nainital</p>
+                        <div class="p-5 bg-white shadow-sm border-l-4 border-amber-600 rounded-lg">
+                            <p class="label-standard text-[9px]">Jurisdiction</p>
+                            <p class="text-xs text-slate-500 mt-1">Nainital, Almora & Ranikhet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-padding bg-white reveal">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <span class="label-standard">Client Feedback</span>
+                <h2 class="serif text-4xl md:text-5xl mt-4 mb-12">Client Testimonials</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="p-10 premium-card text-left italic">
+                        <i class="fa-solid fa-quote-left text-amber-200 text-4xl mb-4 block"></i>
+                        <p class="text-slate-600 mb-6 leading-relaxed">"Advocate Vijay Pandey’s deep understanding of Kumaon revenue laws helped us resolve a decades-old property dispute with ease."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 font-bold">R</div>
+                            <div><p class="font-bold text-slate-800 text-sm">R. S. Negi</p></div>
+                        </div>
+                    </div>
+                    <div class="p-10 premium-card text-left italic">
+                        <i class="fa-solid fa-quote-left text-amber-200 text-4xl mb-4 block"></i>
+                        <p class="text-slate-600 mb-6 leading-relaxed">"A true professional and a leader of the bar. His strategic approach in the District Court was instrumental in our success."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-10 h-10 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 font-bold">A</div>
+                            <div><p class="font-bold text-slate-800 text-sm">A. K. Sharma</p></div>
                         </div>
                     </div>
                 </div>
@@ -147,51 +165,121 @@
         </section>
 
         <section id="practice" class="section-padding bg-slate-900 text-white reveal">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="text-center mb-16">
-                    <h2 class="text-amber-500 font-bold uppercase tracking-widest text-[10px] mb-2">Practice Areas</h2>
-                    <h3 class="serif text-4xl">Expert Legal Solutions</h3>
-                    <div class="h-1.5 w-16 bg-amber-600 mx-auto mt-4 rounded-full"></div>
-                </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <article class="p-10 rounded-3xl bg-slate-800 border border-slate-700 hover:border-amber-500 transition-all group reveal stagger-1">
+            <div class="max-w-6xl mx-auto px-6 text-center">
+                <span class="label-standard">Our Specialty</span>
+                <h2 class="serif text-4xl md:text-5xl mt-4 mb-12">Legal Specializations</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-left">
+                    <article class="p-10 premium-card bg-slate-800 border-slate-700 hover:border-amber-500 group reveal stagger-1">
                         <i class="fa-solid fa-gavel text-3xl text-amber-500 mb-6 group-hover:scale-110 transition"></i>
                         <h4 class="serif text-2xl mb-4">Civil & Revenue</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">Handling complex Kumaon land records, title verification, and property partitions.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Expert handling of Kumaon land records, title verification, and partitions.</p>
                     </article>
-                    <article class="p-10 rounded-3xl bg-slate-800 border border-slate-700 hover:border-amber-500 transition-all group reveal stagger-2">
+                    <article class="p-10 premium-card bg-slate-800 border-slate-700 hover:border-amber-500 group reveal stagger-2">
                         <i class="fa-solid fa-shield-halved text-3xl text-amber-500 mb-6 group-hover:scale-110 transition"></i>
-                        <h4 class="serif text-2xl mb-4">Criminal Defense</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">Strategic representation and robust defense for high-stakes criminal trials and litigation.</p>
+                        <h4 class="serif text-2xl mb-4">Criminal Law</h4>
+                        <p class="text-slate-400 text-sm leading-relaxed">Robust defense for high-stakes criminal trials and litigation.</p>
                     </article>
-                    <article class="p-10 rounded-3xl bg-slate-800 border border-slate-700 hover:border-amber-500 transition-all group reveal stagger-3">
+                    <article class="p-10 premium-card bg-slate-800 border-slate-700 hover:border-amber-500 group reveal stagger-3">
                         <i class="fa-solid fa-building-columns text-3xl text-amber-500 mb-6 group-hover:scale-110 transition"></i>
                         <h4 class="serif text-2xl mb-4">Banking Law</h4>
-                        <p class="text-slate-400 text-sm leading-relaxed">Official counsel for SBI, specializing in debt recovery and banking compliance.</p>
+                        <p class="text-slate-400 text-sm leading-relaxed">Authorized counsel for SBI, specializing in debt recovery and compliance.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <section id="resources" class="section-padding bg-white reveal">
+        <section class="section-padding bg-white reveal">
+    <div class="max-w-4xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <span class="label-standard">Knowledge Base</span>
+            <h2 class="serif text-4xl md:text-5xl mt-4">Frequently Asked Questions</h2>
+        </div>
+        
+        <div class="space-y-4">
+            <div class="faq-item premium-card overflow-hidden">
+                <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="font-bold text-slate-800">What documents are essential for a property dispute in Uttarakhand?</span>
+                    <i class="fa-solid fa-chevron-down text-amber-600 transition-transform faq-icon"></i>
+                </button>
+                <div class="faq-answer px-8">
+                    <p class="pb-6 text-slate-600 text-sm leading-relaxed">For Revenue and Civil property cases, you typically need the <strong>Latest Khatauni (Record of Rights)</strong>, the <strong>Registered Sale Deed</strong>, and any previous <strong>Mutation (Daakhil Kharij)</strong> orders. If it is an ancestral property, a family tree (Vanshavali) verified by the Tehsil is also required.</p>
+                </div>
+            </div>
+
+            <div class="faq-item premium-card overflow-hidden">
+                <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="font-bold text-slate-800">I received a notice under Section 138 (Cheque Bounce). What should I do?</span>
+                    <i class="fa-solid fa-chevron-down text-amber-600 transition-transform faq-icon"></i>
+                </button>
+                <div class="faq-answer px-8">
+                    <p class="pb-6 text-slate-600 text-sm leading-relaxed">Section 138 is a serious criminal matter. You must respond to the legal notice within <strong>15 days</strong> of receipt. Ignoring it can lead to an arrest warrant. We recommend scheduling an immediate consultation to draft a strategic reply and prepare your defense for the trial.</p>
+                </div>
+            </div>
+
+            <div class="faq-item premium-card overflow-hidden">
+                <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="font-bold text-slate-800">What is the difference between Anticipatory Bail and Regular Bail?</span>
+                    <i class="fa-solid fa-chevron-down text-amber-600 transition-transform faq-icon"></i>
+                </button>
+                <div class="faq-answer px-8">
+                    <p class="pb-6 text-slate-600 text-sm leading-relaxed"><strong>Anticipatory Bail</strong> is applied for before an arrest is made, if you fear a false accusation in a non-bailable offense. <strong>Regular Bail</strong> is applied for after a person has already been taken into custody by the police. We handle both High Court (Nainital) and District Court bail applications.</p>
+                </div>
+            </div>
+
+            <div class="faq-item premium-card overflow-hidden">
+                <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="font-bold text-slate-800">Are there restrictions on buying agricultural land in Uttarakhand?</span>
+                    <i class="fa-solid fa-chevron-down text-amber-600 transition-transform faq-icon"></i>
+                </button>
+                <div class="faq-answer px-8">
+                    <p class="pb-6 text-slate-600 text-sm leading-relaxed">Yes, Uttarakhand has specific land laws (Zamindari Abolition and Land Reforms Act) that limit the amount of agricultural land non-residents can purchase. It is vital to verify the <strong>Land Use category</strong> and obtain proper permissions to avoid future litigation or government acquisition.</p>
+                </div>
+            </div>
+
+            <div class="faq-item premium-card overflow-hidden">
+                <button class="w-full px-8 py-6 text-left flex justify-between items-center focus:outline-none" onclick="toggleFAQ(this)">
+                    <span class="font-bold text-slate-800">How long does a typical Civil Suit take to resolve?</span>
+                    <i class="fa-solid fa-chevron-down text-amber-600 transition-transform faq-icon"></i>
+                </button>
+                <div class="faq-answer px-8">
+                    <p class="pb-6 text-slate-600 text-sm leading-relaxed">While every case is unique, a contested civil suit can take <strong>2 to 5 years</strong>. However, many matters related to injunctions (Stay Orders) can be decided within weeks to protect your immediate interests while the main trial continues.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+		
+		<section id="news" class="section-padding bg-slate-50 reveal">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="text-center mb-12">
+                    <span class="label-standard">Stay Informed</span>
+                    <h2 class="serif text-4xl md:text-5xl mt-4">Latest Legal Updates</h2>
+                </div>
+                <div id="rss-loader" class="text-center py-10 text-slate-400 label-standard">Fetching latest news...</div>
+                <div id="rss-container" class="grid md:grid-cols-3 gap-8"></div>
+            </div>
+        </section>
+
+        <section id="resources" class="section-padding bg-white reveal border-t border-slate-50">
             <div class="max-w-6xl mx-auto px-6 text-center">
-                <h2 class="text-amber-600 font-bold uppercase tracking-widest text-[10px] mb-8">Quick Access Portals</h2>
+                <span class="label-standard">Legal Tools</span>
+                <h2 class="serif text-4xl md:text-5xl mt-4 mb-10">Quick Access Portals</h2>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <a href="https://highcourtofuttarakhand.gov.in/" target="_blank" class="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-amber-500 hover:bg-white transition-all">
-                        <i class="fa-solid fa-scale-balanced text-amber-600"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest">UK High Court</span>
+                    <a href="https://highcourtofuttarakhand.gov.in/" target="_blank" class="flex flex-col items-center gap-4 p-8 premium-card shadow-sm group">
+                        <i class="fa-solid fa-scale-balanced text-amber-600 text-2xl transition group-hover:scale-110"></i>
+                        <span class="label-standard text-[9px]">UK High Court</span>
                     </a>
-                    <a href="https://almora.dcourts.gov.in/" target="_blank" class="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-amber-500 hover:bg-white transition-all">
-                        <i class="fa-solid fa-map-pin text-amber-600"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest">Almora District</span>
+                    <a href="https://almora.dcourts.gov.in/" target="_blank" class="flex flex-col items-center gap-4 p-8 premium-card shadow-sm group">
+                        <i class="fa-solid fa-map-pin text-amber-600 text-2xl transition group-hover:scale-110"></i>
+                        <span class="label-standard text-[9px]">Almora Court</span>
                     </a>
-                    <a href="https://main.sci.gov.in/" target="_blank" class="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-amber-500 hover:bg-white transition-all">
-                        <i class="fa-solid fa-landmark text-amber-600"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest">Supreme Court</span>
+                    <a href="https://main.sci.gov.in/" target="_blank" class="flex flex-col items-center gap-4 p-8 premium-card shadow-sm group">
+                        <i class="fa-solid fa-landmark text-amber-600 text-2xl transition group-hover:scale-110"></i>
+                        <span class="label-standard text-[9px]">Supreme Court</span>
                     </a>
-                    <a href="https://www.indiacode.nic.in/" target="_blank" class="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-transparent hover:border-amber-500 hover:bg-white transition-all">
-                        <i class="fa-solid fa-book text-amber-600"></i>
-                        <span class="text-[10px] font-black uppercase tracking-widest">India Code</span>
+                    <a href="https://www.indiacode.nic.in/" target="_blank" class="flex flex-col items-center gap-4 p-8 premium-card shadow-sm group">
+                        <i class="fa-solid fa-book text-amber-600 text-2xl transition group-hover:scale-110"></i>
+                        <span class="label-standard text-[9px]">India Code</span>
                     </a>
                 </div>
             </div>
@@ -199,40 +287,74 @@
 
         <section id="contact" class="section-padding reveal">
             <div class="max-w-6xl mx-auto px-6">
-                <div class="bg-white rounded-[3rem] p-10 md:p-16 grid lg:grid-cols-2 gap-16 shadow-2xl border border-slate-100">
+                <div class="bg-white rounded-[2.5rem] p-8 md:p-14 grid lg:grid-cols-2 gap-12 shadow-2xl border border-slate-100">
                     <div>
-                        <h3 class="serif text-5xl mb-6 text-slate-900 leading-tight">Professional Consultation</h3>
-                        <p class="text-slate-500 mb-10 text-lg italic">President, Bar Association Ranikhet.</p>
+                        <span class="label-standard">Get in Touch</span>
+                        <h2 class="serif text-4xl md:text-5xl mt-4 mb-6 leading-tight">Professional Consultation</h2>
                         <div class="space-y-8">
                             <div class="flex gap-6">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-phone"></i></div>
-                                <div><p class="font-bold text-slate-800">+91 94129 85739</p><p class="text-sm text-slate-400">Resi: 05966-221606</p></div>
+                                <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                <div><p class="font-bold text-slate-800 tracking-tight text-lg">+91 94129 85739</p></div>
                             </div>
                             <div class="flex gap-6">
-                                <div class="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
-                                <div>
-                                    <p class="font-bold text-slate-800 uppercase">Chamber No. 7, Court Compound</p>
-                                    <p class="text-sm text-slate-500">Ranikhet Tehsil, Dist. Almora</p>
-                                </div>
+                                <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                <div><p class="font-bold text-slate-800 text-lg">Chamber No. 7, Court Compound, Ranikhet</p></div>
                             </div>
                         </div>
                     </div>
                     <form class="space-y-4 bg-slate-50 p-8 rounded-[2rem]">
-                        <input type="text" placeholder="Full Name" class="w-full bg-white p-5 rounded-2xl border border-slate-200 outline-none shadow-sm focus:border-amber-500">
-                        <textarea placeholder="Brief Case Summary" class="w-full bg-white p-5 rounded-2xl h-32 border border-slate-200 outline-none shadow-sm focus:border-amber-500"></textarea>
-                        <button class="w-full bg-amber-600 text-white py-5 rounded-2xl font-bold uppercase tracking-[0.2em] btn-premium">Submit Request</button>
+                        <input type="text" placeholder="Full Name" class="w-full bg-white p-5 rounded-xl border border-slate-200 outline-none focus:border-amber-500 shadow-sm">
+                        <textarea placeholder="Brief Case Summary" class="w-full bg-white p-5 rounded-xl h-36 border border-slate-200 outline-none focus:border-amber-500 shadow-sm"></textarea>
+                        <button type="button" class="w-full bg-amber-600 text-white py-5 btn-standard shadow-lg shadow-amber-900/20">Submit Request</button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12 text-center bg-white border-t border-slate-100">
-        <p class="text-slate-800 font-black tracking-tighter text-xl mb-4 uppercase">Ranikhet Legal Chambers</p>
-        <p class="text-slate-400 text-[10px] font-bold uppercase tracking-[0.4em]">© 2026 Advocate Vijay Pandey</p>
+    <footer class="py-10 text-center bg-white border-t border-slate-100">
+        <p class="text-slate-800 font-black tracking-tighter text-xl mb-2 uppercase">Ranikhet Legal Chambers</p>
+        <p class="label-standard text-slate-400 text-[9px]">© 2026 Advocate Vijay Pandey • Ranikhet, Uttarakhand</p>
     </footer>
 
     <script>
+        // RSS FEED READER LOGIC
+        async function fetchRSS() {
+            const RSS_URL = 'https://news.google.com/rss/search?q=legal+news+india&hl=en-IN&gl=IN&ceid=IN:en';
+            const API_URL = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS_URL)}`;
+            
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                const container = document.getElementById('rss-container');
+                const loader = document.getElementById('rss-loader');
+                
+                if (data.status === 'ok') {
+                    loader.style.display = 'none';
+                    const topThree = data.items.slice(0, 3);
+                    topThree.forEach((item, index) => {
+                        const newsHTML = `
+                            <article class="p-8 premium-card flex flex-col justify-between reveal active stagger-${index + 1}">
+                                <div>
+                                    <span class="label-standard text-[9px] text-amber-600">${new Date(item.pubDate).toLocaleDateString()}</span>
+                                    <h4 class="serif text-xl mt-3 mb-4 leading-tight text-slate-800">${item.title}</h4>
+                                </div>
+                                <a href="${item.link}" target="_blank" class="text-amber-600 font-bold text-xs uppercase tracking-widest mt-4 hover:underline">Read Full Article →</a>
+                            </article>
+                        `;
+                        container.innerHTML += newsHTML;
+                    });
+                }
+            } catch (error) {
+                document.getElementById('rss-loader').innerHTML = "Unable to load news.";
+            }
+        }
+
+        function toggleFAQ(button) {
+            const item = button.parentElement;
+            item.classList.toggle('active');
+        }
+
         function revealOnScroll() {
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
@@ -244,7 +366,10 @@
             }
         }
         window.addEventListener("scroll", revealOnScroll);
-        window.addEventListener("load", revealOnScroll);
+        window.addEventListener("load", () => {
+            fetchRSS();
+            revealOnScroll();
+        });
     </script>
 </body>
 </html>
