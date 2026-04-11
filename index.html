@@ -129,6 +129,34 @@
 </header>
 
     <main>
+	<section id="contact" class="section-padding reveal">
+            <div class="max-w-6xl mx-auto px-6">
+                <div class="bg-white rounded-[2.5rem] p-8 md:p-14 grid lg:grid-cols-2 gap-12 shadow-2xl border border-slate-100">
+                    <div>
+                        <span class="label-standard">Get in Touch</span>
+                        <h2 class="serif text-4xl md:text-5xl mt-4 mb-6 leading-tight">Professional Consultation</h2>
+                        <div class="space-y-8">
+                            <div class="flex gap-6">
+                                <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-phone"></i></div>
+                                <div><p id="cfg-phone-contact" class="font-bold text-slate-800 tracking-tight text-lg"></p></div>
+                            </div>
+                            <div class="flex gap-6">
+                                <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
+                                <div><p id="cfg-office-contact" class="font-bold text-slate-800 text-lg"></p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <form onsubmit="event.preventDefault(); sendMail();" class="space-y-4 bg-slate-50 p-8 rounded-[2rem]">
+                        <input id="form-name" type="text" placeholder="Full Name" class="w-full bg-white p-5 rounded-xl border border-slate-200 outline-none focus:border-amber-500 shadow-sm" required>
+                        <textarea id="form-msg" placeholder="Brief Case Summary" class="w-full bg-white p-5 rounded-xl h-36 border border-slate-200 outline-none focus:border-amber-500 shadow-sm" required></textarea>
+                        <button type="submit" class="w-full bg-amber-600 text-white py-5 btn-standard shadow-lg">Submit Request</button>
+						<p class="text-[10px] text-slate-400 text-center mt-3 uppercase tracking-wider">
+        <i class="fa-solid fa-circle-info mr-1"></i> Clicking submit will open your default email application
+    </p>
+                    </form>
+                </div>
+            </div>
+        </section>
         <section class="bg-white border-b border-slate-100 py-12">
             <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div><p id="cfg-stat-exp" class="text-4xl font-black text-amber-600 serif"></p><p class="label-standard mt-2 text-slate-400">Years Exp.</p></div>
@@ -269,34 +297,7 @@
             </div>
         </section>
 
-        <section id="contact" class="section-padding reveal">
-            <div class="max-w-6xl mx-auto px-6">
-                <div class="bg-white rounded-[2.5rem] p-8 md:p-14 grid lg:grid-cols-2 gap-12 shadow-2xl border border-slate-100">
-                    <div>
-                        <span class="label-standard">Get in Touch</span>
-                        <h2 class="serif text-4xl md:text-5xl mt-4 mb-6 leading-tight">Professional Consultation</h2>
-                        <div class="space-y-8">
-                            <div class="flex gap-6">
-                                <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-phone"></i></div>
-                                <div><p id="cfg-phone-contact" class="font-bold text-slate-800 tracking-tight text-lg"></p></div>
-                            </div>
-                            <div class="flex gap-6">
-                                <div class="w-12 h-12 bg-amber-50 rounded-full flex items-center justify-center text-amber-600 shrink-0"><i class="fa-solid fa-location-dot"></i></div>
-                                <div><p id="cfg-office-contact" class="font-bold text-slate-800 text-lg"></p></div>
-                            </div>
-                        </div>
-                    </div>
-                    <form onsubmit="event.preventDefault(); sendMail();" class="space-y-4 bg-slate-50 p-8 rounded-[2rem]">
-                        <input id="form-name" type="text" placeholder="Full Name" class="w-full bg-white p-5 rounded-xl border border-slate-200 outline-none focus:border-amber-500 shadow-sm" required>
-                        <textarea id="form-msg" placeholder="Brief Case Summary" class="w-full bg-white p-5 rounded-xl h-36 border border-slate-200 outline-none focus:border-amber-500 shadow-sm" required></textarea>
-                        <button type="submit" class="w-full bg-amber-600 text-white py-5 btn-standard shadow-lg">Submit Request</button>
-						<p class="text-[10px] text-slate-400 text-center mt-3 uppercase tracking-wider">
-        <i class="fa-solid fa-circle-info mr-1"></i> Clicking submit will open your default email application
-    </p>
-                    </form>
-                </div>
-            </div>
-        </section>
+        
 
         <section class="bg-slate-900 text-white py-12 border-t border-slate-800 reveal">
             <div class="max-w-6xl mx-auto px-6">
